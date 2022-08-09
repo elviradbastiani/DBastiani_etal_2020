@@ -206,7 +206,7 @@ Parasites=ncol(observed.bin)
 NODF_observed=nested(observed.bin,method="NODF2",rescale=F)
 NODFarr_observed=round(NODF_observed,digits=3) 
 #Connectance 
-Connectance _observed=sum(observed.bin)/(ncol(observed.bin)*nrow(observed.bin))
+Connectance_observed=sum(observed.bin)/(ncol(observed.bin)*nrow(observed.bin))
 #Modularity
 Modular_observed=computeModules(observed.bin)
 Modularity_observed=slot(Modular_observed,"likelihood")
@@ -267,15 +267,15 @@ for (n in 1:samples){
   NODF_AS=nested(sub.bin,method="NODF2",rescale=F)
   NODFarr_AS=round(NODF_AS,digits=3) 
   #Connectance 
-  Connectance _AS=sum(sub.bin)/(ncol(sub.bin)*nrow(sub.bin))
+  Connectance_AS=sum(sub.bin)/(ncol(sub.bin)*nrow(sub.bin))
   #Modularity
   Modular_AS=computeModules(sub.bin <- sub.bin + 1E-5)
   Modularity_AS=slot(Modular_AS,"likelihood")
   
   if (n==1) {
-    exit=c(n,Hosts,Parasites,NODFarr_AS,Connectance _AS,Modularity_AS)
+    exit=c(n,Hosts,Parasites,NODFarr_AS,Connectance_AS,Modularity_AS)
   } else {
-    exit1=c(n,Hosts,Parasites,NODFarr_AS,Connectance _AS,Modularity_AS)
+    exit1=c(n,Hosts,Parasites,NODFarr_AS,Connectance_AS,Modularity_AS)
     exit=rbind(exit,exit1)
   }
 }
@@ -285,7 +285,7 @@ colnames(exit)[1] <- "n"
 colnames(exit)[2] <- "Hosts"
 colnames(exit)[3] <- "Parasites"
 colnames(exit)[4] <- "Nestedness"
-colnames(exit)[5] <- "Connectance "
+colnames(exit)[5] <- "Connectance"
 colnames(exit)[6] <- "Modularity"
 
 write.table(exit,file = "exit.phylogeny.model.txt", col.names=TRUE,row.names=FALSE,sep="\t")
@@ -350,7 +350,7 @@ Parasites=ncol(observed.bin)
 NODF_observed=nested(observed.bin,method="NODF2",rescale=F)
 NODFarr_observed=round(NODF_observed,digits=3) 
 #connectance 
-Connectance _observed=sum(observed.bin)/(ncol(observed.bin)*nrow(observed.bin))
+Connectance_observed=sum(observed.bin)/(ncol(observed.bin)*nrow(observed.bin))
 #modularity
 modular_observed=computeModules(observed.bin)
 Modularity_observed=slot(modular_observed,"likelihood")
@@ -425,16 +425,16 @@ write.table(sub, name, col.names=FALSE,row.names=FALSE,sep="\t")
     	NODF_AS=nested(sub.bin,method="NODF2",rescale=F)
    	 NODFarr_AS=round(NODF_AS,digits=3) 
     #connectance 
-    	Connectance _AS=sum(sub.bin)/(ncol(sub.bin)*nrow(sub.bin))
+    	Connectance_AS=sum(sub.bin)/(ncol(sub.bin)*nrow(sub.bin))
     #modularity
     	modular_AS=computeModules(sub.bin <- sub.bin + 1E-5)
     	Modularity_AS=slot(modular_AS,"likelihood")
        
         
     if (n==1) {
-      exit=c(n,Hosts_AS,Parasites_AS,NODFarr_AS,Connectance _AS,Modularity_AS)
+      exit=c(n,Hosts_AS,Parasites_AS,NODFarr_AS,Connectance_AS,Modularity_AS)
     } else {
-exit1=c(n,Hosts_AS,Parasites_AS,NODFarr_AS,Connectance _AS,Modularity_AS)
+exit1=c(n,Hosts_AS,Parasites_AS,NODFarr_AS,Connectance_AS,Modularity_AS)
       exit=rbind(exit,exit1)
     }
     
@@ -446,7 +446,7 @@ colnames(exit)[1] <- "n"
 colnames(exit)[2] <- "Hosts"
 colnames(exit)[3] <- "Parasites"
 colnames(exit)[4] <- "Nestedness"
-colnames(exit)[5] <- "Connectance "
+colnames(exit)[5] <- "Connectance"
 colnames(exit)[6] <- "Modularity"
 
 write.table(exit,file = "exit.body.size.model.txt", col.names=TRUE,row.names=FALSE,sep="\t")
